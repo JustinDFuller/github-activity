@@ -88,6 +88,5 @@ func FetchRepos(url string) GithubReposResponse {
 	var repos GithubReposResponse;
 	repos.httpRequest(url);
 	repos.sortByDate();
-	// repos.prettyPrintJSON();
 	return repos;
 }
