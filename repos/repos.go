@@ -2,13 +2,17 @@ package repos
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
-	"net/http"
-	"encoding/json"
 	"sort"
 	"time"
+	"net/http"
+	"io/ioutil"
+	"encoding/json"
 );
+
+import (
+	"github/url"
+)
 
 type GithubReposResponse []struct {
 	Name string `json:"name"`
@@ -16,6 +20,14 @@ type GithubReposResponse []struct {
 	Url string `json:"url"`
 	Language string `json:"language"`
 	UpdatedAt string `json:"updated_at"`
+	CommitsUrl string `json:"commits_url"`
+	Commits []struct {
+		Commit struct {
+			Committer struct {
+				Date string `json:"date"`
+			} `json:"committer"`
+		} `json:"commit"`
+	}
 }
 
 func (repos *GithubReposResponse) parseJSON(jsonToParse []byte) {
@@ -30,8 +42,10 @@ func (repos *GithubReposResponse) parseJSON(jsonToParse []byte) {
 	}
 }
 
-func (repos *GithubReposResponse) httpRequest(url string) {
-	res, err := http.Get(url);
+func (repos *GithubReposResponse) httpRequest(githubUrl string) {
+	urlWithAuth := url.FormatWithAuth(githubUrl);
+	
+	res, err := http.Get(urlWithAuth);
 
 	if err != nil {
 		log.Fatal(err)
@@ -72,9 +86,8 @@ func (repos GithubReposResponse) sortByDate() {
 
 func FetchRepos(url string) GithubReposResponse {
 	var repos GithubReposResponse;
-	fmt.Print(url);
 	repos.httpRequest(url);
 	repos.sortByDate();
-	repos.prettyPrintJSON();
+	// repos.prettyPrintJSON();
 	return repos;
 }

@@ -2,11 +2,15 @@ package user
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"io/ioutil"
 	"encoding/json"
 );
+
+import (
+	"github/url"
+)
 
 type GithubUserResponse struct {
 	ReposUrl string `json:"repos_url"`
@@ -24,8 +28,10 @@ func (response *GithubUserResponse) parseJSON(jsonToParse []byte) {
 	}
 }
 
-func (responseTarget *GithubUserResponse) httpRequest(url string) {
-	res, err := http.Get(url);
+func (responseTarget *GithubUserResponse) httpRequest(githubUrl string) {
+	urlWithAuth := url.FormatWithAuth(githubUrl);
+
+	res, err := http.Get(urlWithAuth);
 
 	if err != nil {
 		log.Fatal(err)
@@ -51,8 +57,8 @@ func (parsedJSON GithubUserResponse) prettyPrintJSON() {
 	fmt.Print(string(formattedJSON))
 }
 
-func FetchReposUrl() string {
+func FetchReposUrl(user string) string {
 	var githubApi GithubUserResponse;
-	githubApi.httpRequest("https://api.github.com/users/JustinDfuller");
+	githubApi.httpRequest("https://api.github.com/users/" + user);
 	return githubApi.ReposUrl;
 }

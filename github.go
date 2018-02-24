@@ -1,12 +1,13 @@
 package main
 
 import (
-	// "fmt"
 	"github/user"
 	"github/repos"
+	"github/commitActivity"
 );
 
 func main() {
-	repoUrl := user.FetchReposUrl();
-	repos.FetchRepos(repoUrl);
+	repoUrl := user.FetchReposUrl("JustinDfuller");
+	repos := repos.FetchRepos(repoUrl);
+	commitActivity.FetchCommitActivity(repos);
 }
