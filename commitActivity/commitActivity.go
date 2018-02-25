@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"io/ioutil"
 	"encoding/json"
-);
+)
 
 import (
 	"github/repos"
@@ -24,20 +24,20 @@ type GithubCommitResponse []struct {
 
 func (response *GithubCommitResponse) parseJSON(jsonToParse []byte) {
 	if !json.Valid(jsonToParse) {
-		log.Fatal("Invalid JSON received");
+		log.Fatal("Invalid JSON received")
 	}
 
-	err := json.Unmarshal(jsonToParse, &response);
+	err := json.Unmarshal(jsonToParse, &response)
 
 	if err != nil {
-		log.Fatal("An error occured while parsing JSON.", err);
+		log.Fatal("An error occured while parsing JSON.", err)
 	}
 }
 
-func (responseTarget *GithubCommitResponse)  httpRequest(githubUrl string) {
-	urlWithAuth := url.FormatWithAuth(githubUrl);
+func (responseTarget *GithubCommitResponse) httpRequest(githubUrl string) {
+	urlWithAuth := url.FormatWithAuth(githubUrl)
 
-	res, err := http.Get(urlWithAuth);
+	res, err := http.Get(urlWithAuth)
 
 	if err != nil {
 		log.Fatal(err)
@@ -45,35 +45,35 @@ func (responseTarget *GithubCommitResponse)  httpRequest(githubUrl string) {
 
 	body, err := ioutil.ReadAll(res.Body)
 	res.Body.Close()
-	
+
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	responseTarget.parseJSON(body);
+	responseTarget.parseJSON(body)
 }
 
 func prettyPrintJSON(parsedJSON repos.GithubReposResponse) {
 	formattedJSON, err := json.MarshalIndent(parsedJSON, "", "  ")
-	
+
 	if err != nil {
-			fmt.Println("error:", err)
+		fmt.Println("error:", err)
 	}
-	
+
 	fmt.Print(string(formattedJSON))
 }
 
 func FetchCommitActivity(repos repos.GithubReposResponse) repos.GithubReposResponse {
-	replaceShaInUrl := strings.NewReplacer("{/sha}", "");
+	replaceShaInUrl := strings.NewReplacer("{/sha}", "")
 
 	for index, value := range repos {
-		var commits GithubCommitResponse;
-		url := replaceShaInUrl.Replace(value.CommitsUrl);
-		commits.httpRequest(url);
-		repos[index].Commits = commits;
+		var commits GithubCommitResponse
+		url := replaceShaInUrl.Replace(value.CommitsUrl)
+		commits.httpRequest(url)
+		repos[index].Commits = FormatCommitActivity(commits)
 	}
 
-	prettyPrintJSON(repos);
+	prettyPrintJSON(repos)
 
-	return repos;
+	return repos
 }

@@ -6,23 +6,14 @@ import (
 )
 
 func TestFormatWithAuth(t *testing.T) {
-	expected := "https://github.com/user/me?client_id=client_id_with_spaces&client_secret=client_secret_with_spaces";
+	expected := "https://github.com/user/me?client_id=client_id_with_spaces&client_secret=client_secret_with_spaces"
 
-	os.Setenv("client_id", "     client_id_with_spaces   ");
-	os.Setenv("client_secret", "     client_secret_with_spaces   ");
+	os.Setenv("client_id", "     client_id_with_spaces   ")
+	os.Setenv("client_secret", "     client_secret_with_spaces   ")
 
-	url := FormatWithAuth("https://github.com/user/me");
+	url := FormatWithAuth("https://github.com/user/me")
 
 	if url != expected {
-		t.Error("Expected URL: " + expected + "But received: " + url);
-	}
-}
-
-func BenchmarkFormatWithAuth(b *testing.B) {
-	os.Setenv("client_id", "     client_id_with_spaces   ");
-	os.Setenv("client_secret", "     client_secret_with_spaces   ");
-
-	for i := 0; i < b.N; i++ {
-		FormatWithAuth("myString");
+		t.Error("Expected URL: " + expected + "But received: " + url)
 	}
 }
