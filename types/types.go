@@ -13,3 +13,5 @@ type GithubCommitResponse []struct {
 		} `json:"committer"`
 	} `json:"commit"`
 }
+
+type User string

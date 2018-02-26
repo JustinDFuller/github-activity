@@ -79,7 +79,7 @@ func (repos GithubReposResponse) sortByDate() {
 	})
 }
 
-func FetchRepos(url string) GithubReposResponse {
+func FetchRepos(url string, user types.User) GithubReposResponse {
 	var repos GithubReposResponse
 	repos.httpRequest(url)
 	repos.sortByDate()

@@ -10,6 +10,7 @@ import (
 
 import (
 	"github/url"
+	"github/types"
 )
 
 type GithubUserResponse struct {
@@ -57,8 +58,8 @@ func (parsedJSON GithubUserResponse) prettyPrintJSON() {
 	fmt.Print(string(formattedJSON))
 }
 
-func FetchReposUrl(user string) string {
+func FetchReposUrl(user types.User) string {
 	var githubApi GithubUserResponse
-	githubApi.httpRequest("https://api.github.com/users/" + user)
+	githubApi.httpRequest("https://api.github.com/users/" + string(user))
 	return githubApi.ReposUrl
 }
