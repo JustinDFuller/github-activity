@@ -1,10 +1,10 @@
 package githubActivity
 
 import (
-	"github/commitActivity"
-	"github/repos"
-	"github/user"
-	"github/types"
+	"github-activity/commitActivity"
+	"github-activity/repos"
+	"github-activity/user"
+	"github-activity/types"
 )
 
 func Activity(userName types.User) repos.GithubReposResponse {

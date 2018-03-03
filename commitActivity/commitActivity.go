@@ -10,8 +10,8 @@ import (
 )
 
 import (
-	"github/repos"
-	"github/url"
+	"github-activity/repos"
+	"github-activity/url"
 )
 
 type GithubCommitResponse []struct {

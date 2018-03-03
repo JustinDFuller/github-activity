@@ -9,8 +9,8 @@ import (
 )
 
 import (
-	"github/url"
-	"github/types"
+	"github-activity/url"
+	"github-activity/types"
 )
 
 type GithubUserResponse struct {
