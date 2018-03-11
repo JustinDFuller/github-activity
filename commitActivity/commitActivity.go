@@ -91,7 +91,5 @@ func FetchCommitActivity(repos repos.GithubReposResponse) repos.GithubReposRespo
 		repos[index].Commits = FormatCommitActivity(response)
 	}
 	
-	prettyPrintJSON(repos);
-
 	return repos
 }

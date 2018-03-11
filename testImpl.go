@@ -1,12 +1,12 @@
 package main
 
 import (
-  // "fmt"
+  "fmt"
 	"github-activity/types"
 	"github-activity/githubActivity"
 )
 
 func main() {
-	githubActivity.Activity(types.User("JustinDFuller"))
-// 	fmt.Print(activity)
+	activity := githubActivity.Activity(types.User("JustinDFuller"))
+	fmt.Print(activity)
 }
