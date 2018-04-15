@@ -1,27 +1,33 @@
 package main
 
 import (
-  "errors"
+	"context"
   "encoding/json"
-	"github-activity/types"
-	"github-activity/githubActivity"
+  
+  "github-activity/types"
+  "github-activity/githubActivity"
+  
+	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-type Request struct {
-	UserName string `json:"userName"`
-}
+func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+  userName := request.QueryStringParameters["UserName"];
 
-func HandleRequest(request Request) (string, error) {
-  
-  if request.UserName != "" {
-    activity := githubActivity.Activity(types.User(request.UserName))
+  if userName != "" {
+    activity := githubActivity.Activity(types.User(userName))
     stringifiedActivity, _ := json.Marshal(activity)
     
-    return string(stringifiedActivity), nil
+    return events.APIGatewayProxyResponse{
+      Body: string(stringifiedActivity),
+      StatusCode: 200,
+    }, nil
   }
   
-  return "", errors.New("Invalid user name provided.")
+  return events.APIGatewayProxyResponse{
+    Body: "Invalid Username Provided",
+    StatusCode: 401,
+  }, nil
 }
 
 func main() {
