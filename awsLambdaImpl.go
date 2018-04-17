@@ -21,12 +21,18 @@ func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (
     return events.APIGatewayProxyResponse{
       Body: string(stringifiedActivity),
       StatusCode: 200,
+      Headers: map[string]string{
+        "Access-Control-Allow-Origin": "*",
+      },
     }, nil
   }
   
   return events.APIGatewayProxyResponse{
     Body: "Invalid Username Provided",
     StatusCode: 401,
+    Headers: map[string]string{
+      "Access-Control-Allow-Origin": "*",
+    },
   }, nil
 }
 
