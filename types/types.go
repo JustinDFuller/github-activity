@@ -2,7 +2,7 @@ package types
 
 // Assumes no more than 255 commits in a given day..
 type FormattedCommitResponse struct {
-	Date string
+	Date    string
 	Commits uint8
 }
 

@@ -1,9 +1,9 @@
 package main
 
 import (
-  "fmt"
-	"github-activity/types"
+	"fmt"
 	"github-activity/githubActivity"
+	"github-activity/types"
 )
 
 func main() {

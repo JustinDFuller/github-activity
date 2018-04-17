@@ -11,8 +11,8 @@ import (
 )
 
 import (
-	"github-activity/url"
 	"github-activity/types"
+	"github-activity/url"
 )
 
 type GithubReposResponse []struct {
@@ -83,10 +83,10 @@ func FetchRepos(url string, user types.User) GithubReposResponse {
 	var repos GithubReposResponse
 	repos.httpRequest(url)
 	repos.sortByDate()
-	
-	if (len(repos) > 10) {
-	  return repos[:10]
+
+	if len(repos) > 10 {
+		return repos[:10]
 	}
-	
-	return repos;
+
+	return repos
 }

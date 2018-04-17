@@ -1,13 +1,13 @@
 package commitActivity
 
 import (
-	"fmt"
-	"log"
-	"sync"
-	"strings"
-	"net/http"
-	"io/ioutil"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"strings"
+	"sync"
 )
 
 import (
@@ -52,7 +52,7 @@ func (responseTarget *GithubCommitResponse) httpRequest(githubUrl string, c chan
 	}
 
 	responseTarget.parseJSON(body)
-	
+
 	c <- *responseTarget
 }
 
@@ -67,29 +67,29 @@ func prettyPrintJSON(parsedJSON repos.GithubReposResponse) {
 }
 
 func FetchCommitActivity(repos repos.GithubReposResponse) repos.GithubReposResponse {
-  var wg sync.WaitGroup
-  
+	var wg sync.WaitGroup
+
 	replaceShaInUrl := strings.NewReplacer("{/sha}", "")
-  c := make(chan GithubCommitResponse, len(repos))
+	c := make(chan GithubCommitResponse, len(repos))
 
 	for _, value := range repos {
-	  wg.Add(1)
-	  
+		wg.Add(1)
+
 		var commits GithubCommitResponse
 		url := replaceShaInUrl.Replace(value.CommitsUrl)
-		
+
 		go func(url string) {
-      defer wg.Done()
-		  commits.httpRequest(url, c)
-    }(url)
+			defer wg.Done()
+			commits.httpRequest(url, c)
+		}(url)
 	}
-	
+
 	wg.Wait()
-	
+
 	for index, _ := range repos {
-	  response := <-c
+		response := <-c
 		repos[index].Commits = FormatCommitActivity(response)
 	}
-	
+
 	return repos
 }
