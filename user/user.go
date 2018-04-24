@@ -32,6 +32,8 @@ func (response *GithubUserResponse) parseJSON(jsonToParse []byte) {
 func (responseTarget *GithubUserResponse) httpRequest(githubUrl string) {
 	urlWithAuth := url.FormatWithAuth(githubUrl)
 
+	fmt.Print(urlWithAuth)
+
 	res, err := http.Get(urlWithAuth)
 
 	if err != nil {
@@ -55,7 +57,7 @@ func (parsedJSON GithubUserResponse) prettyPrintJSON() {
 		fmt.Println("error:", err)
 	}
 
-	fmt.Print(string(formattedJSON))
+	fmt.Println(string(formattedJSON))
 }
 
 func FetchReposUrl(user types.User) string {

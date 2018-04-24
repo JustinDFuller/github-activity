@@ -14,6 +14,6 @@ func TestActivity(t *testing.T) {
 
 	for _, activity := range data {
 		// assert.True(t);
-		fmt.Print(activity)
+		fmt.Println(activity)
 	}
 }

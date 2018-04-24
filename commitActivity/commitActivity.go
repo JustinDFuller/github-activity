@@ -12,6 +12,7 @@ import (
 
 import (
 	"github-activity/repos"
+	"github-activity/types"
 	"github-activity/url"
 )
 
@@ -63,10 +64,10 @@ func prettyPrintJSON(parsedJSON repos.GithubReposResponse) {
 		fmt.Println("error:", err)
 	}
 
-	fmt.Print(string(formattedJSON))
+	fmt.Println(string(formattedJSON))
 }
 
-func FetchCommitActivity(repos repos.GithubReposResponse) repos.GithubReposResponse {
+func FetchCommitActivity(repos repos.GithubReposResponse, userName types.User) repos.GithubReposResponse {
 	var wg sync.WaitGroup
 
 	replaceShaInUrl := strings.NewReplacer("{/sha}", "")

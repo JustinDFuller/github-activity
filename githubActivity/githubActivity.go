@@ -10,5 +10,5 @@ import (
 func Activity(userName types.User) repos.GithubReposResponse {
 	repoUrl := user.FetchReposUrl(userName)
 	repos := repos.FetchRepos(repoUrl, userName)
-	return commitActivity.FetchCommitActivity(repos)
+	return commitActivity.FetchCommitActivity(repos, userName)
 }

@@ -63,7 +63,7 @@ func (repos GithubReposResponse) prettyPrintJSON() {
 		fmt.Println("error:", err)
 	}
 
-	fmt.Print(string(formattedJSON))
+	fmt.Println(string(formattedJSON))
 }
 
 func parseSortByDate(date string) time.Time {

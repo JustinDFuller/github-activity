@@ -8,5 +8,5 @@ import (
 
 func main() {
 	activity := githubActivity.Activity(types.User("JustinDFuller"))
-	fmt.Print(activity)
+	fmt.Println(activity)
 }
