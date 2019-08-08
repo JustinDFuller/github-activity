@@ -11,8 +11,8 @@ import (
 type FormattedCommitResponseAsMap map[string]uint8
 
 func FormatCommitActivity(commits GithubCommitResponse) []types.FormattedCommitResponse {
-	var formattedCommits []types.FormattedCommitResponse;
-	formattedCommitsMap := make(FormattedCommitResponseAsMap);
+	var formattedCommits []types.FormattedCommitResponse
+	formattedCommitsMap := make(FormattedCommitResponseAsMap)
 
 	for _, value := range commits {
 		date := strings.Split(value.Commit.Committer.Date, "T")[0]
@@ -21,9 +21,9 @@ func FormatCommitActivity(commits GithubCommitResponse) []types.FormattedCommitR
 
 	for key, value := range formattedCommitsMap {
 		formattedCommits = append(formattedCommits, types.FormattedCommitResponse{
-			Date: key,
+			Date:    key,
 			Commits: value,
-		});
+		})
 	}
 
 	return formattedCommits
