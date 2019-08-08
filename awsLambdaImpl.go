@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 
-	"github-activity/githubActivity"
-	"github-activity/types"
+	"github.com/JustinDFuller/github-activity/githubActivity"
+	"github.com/JustinDFuller/github-activity/types"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"

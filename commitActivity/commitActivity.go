@@ -11,9 +11,9 @@ import (
 )
 
 import (
-	"github-activity/repos"
-	"github-activity/types"
-	"github-activity/url"
+	"github.com/JustinDFuller/github-activity/repos"
+	"github.com/JustinDFuller/github-activity/types"
+	"github.com/JustinDFuller/github-activity/url"
 )
 
 type GithubCommitResponse []struct {
