@@ -23,3 +23,12 @@ go fmt ./... && go test -race ./...
 ## Dependency Management
 
 This package uses [go modules](https://github.com/golang/go/wiki/Modules). Whenever you run `go build` or `go test` all dependencies will be downloaded automatically. See [go.mod](./go.mod) and [go.sum](go.sum) to see all modules used by this package.
+
+## Configuration
+
+Many settings are set through [AWS Lambda environment variables](https://docs.aws.amazon.com/lambda/latest/dg/env_variables.html) and read with the [Go "os" package](https://gobyexample.com/environment-variables).
+
+| Variable Name                    | What is it for?                                                               |
+|----------------------------------|-------------------------------------------------------------------------------|
+| client_id                        | The [Github OAuth app](https://auth0.com/docs/connections/social/github) ID.  |                                                                      |
+| client_secret                    | The Github OAuth app secret.                                                  |
