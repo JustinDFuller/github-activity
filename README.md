@@ -32,3 +32,13 @@ Many settings are set through [AWS Lambda environment variables](https://docs.aw
 |----------------------------------|------------------------------------------------------------------------------------------------------------------|
 | client_id                        | The [Github OAuth app](https://auth0.com/docs/connections/social/github) ID. Used to connect to the Github API.  |
 | client_secret                    | The Github OAuth app secret. Used to connect to the Github API.                                                  |
+
+## TODO
+
+* [ ] Document API (query params, responses).
+* [ ] Add tests for existing modules.
+* [ ] Hopefully reduce the number of modules (just the one?).
+* [ ] Fix any bugs (is it only showing JS repos?).
+* [ ] Add environment variable for Access-Control-Allow-Origin.
+* [ ] Add pagination or a mobile route (mobile needs to show less).
+* [ ] Make sure format is exactly what UI needs.
