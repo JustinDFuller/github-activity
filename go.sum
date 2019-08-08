@@ -1,4 +1,5 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/JustinDFuller/github-activity v0.0.0-20190808013328-98a8091aa9ee h1:zPcOyvUypj3mdG88SzX97wOpthpK+vUCrxbTCaRGMgk=
 github.com/amekss/assert v0.0.0-20190715092210-758496b7ede5 h1:yqLdPoqR2fFPak0zRScgY38uckUbzrzlYMxLIlCFlnY=
 github.com/amekss/assert v0.0.0-20190715092210-758496b7ede5/go.mod h1:fhEeBzoTs66Mp4s5WiDyFQ9BWB6Ty5WHID3I2g3kGWQ=
 github.com/aws/aws-lambda-go v1.12.1 h1:rMToYOcPFYDixQ7VNNPg78LmiqPgWD5f8zdLL+EsDAk=

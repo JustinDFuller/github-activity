@@ -5,7 +5,7 @@ import (
 )
 
 import (
-	"github.com/JustinDFuller/github-activity/types"
+	"github.com/JustinDFuller/github-activity/internal/types"
 )
 
 type FormattedCommitResponseAsMap map[string]uint8

@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/JustinDFuller/github-activity/githubActivity"
-	"github.com/JustinDFuller/github-activity/types"
+	"github.com/JustinDFuller/github-activity/internal/githubActivity"
+	"github.com/JustinDFuller/github-activity/internal/types"
 )
 
 func main() {
