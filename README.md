@@ -42,3 +42,5 @@ Many settings are set through [AWS Lambda environment variables](https://docs.aw
 * [ ] Add environment variable for Access-Control-Allow-Origin.
 * [ ] Add pagination or a mobile route (mobile needs to show less).
 * [ ] Make sure format is exactly what UI needs.
+* [ ] Deploy with Drone.io
+* [ ] Set up CloudFormation script for this + mailer's API Gateway.
