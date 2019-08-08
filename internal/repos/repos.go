@@ -33,7 +33,7 @@ func (repos *GithubReposResponse) parseJSON(jsonToParse []byte) {
 	err := json.Unmarshal(jsonToParse, &repos)
 
 	if err != nil {
-		log.Fatal("An error occured while parsing JSON.")
+		log.Fatal("An error occurred while parsing JSON.")
 	}
 }
 

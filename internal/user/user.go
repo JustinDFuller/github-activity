@@ -25,7 +25,7 @@ func (response *GithubUserResponse) parseJSON(jsonToParse []byte) {
 	err := json.Unmarshal(jsonToParse, &response)
 
 	if err != nil {
-		log.Fatal("An error occured while parsing JSON.")
+		log.Fatal("An error occurred while parsing JSON.")
 	}
 }
 
