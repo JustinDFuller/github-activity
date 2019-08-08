@@ -1,10 +1,12 @@
 # github-activity
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/JustinDFuller/github-activity/internal)](https://goreportcard.com/report/github.com/JustinDFuller/github-activity/internal)
+[![Build Status](https://cloud.drone.io/api/badges/JustinDFuller/github-activity/status.svg)](https://cloud.drone.io/JustinDFuller/github-activity)
+[![codecov](https://codecov.io/gh/JustinDFuller/github-activity/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinDFuller/github-activity)
 
 Golang github activity service
 
-# Setup
+## Setup
 
 To set up the git hooks run the following command.
 

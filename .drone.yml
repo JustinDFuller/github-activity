@@ -1,0 +1,56 @@
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: integration
+    image: golang
+    commands: 
+      - go get golang.org/x/lint/golint
+      - /bin/bash scripts/diff.sh
+      - go vet ./...
+      - golint ./...
+      - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+    
+  - name: coverage
+    image: plugins/codecov
+    settings:
+      token:
+        from_secret: CODECOV_TOKEN
+
+  - name: build
+    image: golang
+    commands:
+      - apt-get update
+      - apt-get -y install zip
+      - GOOS=linux go build ./cmd/lambda/lambda.go
+      - zip lambda-github-activity-${DRONE_BUILD_NUMBER}.zip lambda
+
+#  - name: s3-publish
+#    image: plugins/s3
+#    settings:
+#      acl: private
+#      region: us-east-1
+#      bucket: drone-deploys
+#      target: github-activity
+#      source: lambda-github-activity-${DRONE_BUILD_NUMBER}.zip
+#      access_key:
+#        from_secret: AWS_ACCESS_KEY_ID
+#      secret_key:
+#        from_secret: AWS_SECRET_ACCESS_KEY 
+#
+#  - name: deploy-lambda
+#    image: omerxx/drone-lambda-plugin
+#    settings:
+#      pull: true
+#      function_name: blog-mailer
+#      s3_bucket: drone-deploys
+#      file_name: mailer/lambda-mailer-${DRONE_BUILD_NUMBER}.zip
+#    environment:
+#      AWS_ACCESS_KEY_ID:
+#        from_secret: AWS_ACCESS_KEY_ID
+#      AWS_SECRET_ACCESS_KEY:
+#        from_secret: AWS_SECRET_ACCESS_KEY  
