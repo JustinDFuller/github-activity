@@ -26,6 +26,8 @@ This package uses [go modules](https://github.com/golang/go/wiki/Modules). Whene
 
 ## Configuration
 
+### Runtime
+
 Many settings are set through [AWS Lambda environment variables](https://docs.aws.amazon.com/lambda/latest/dg/env_variables.html) and read with the [Go "os" package](https://gobyexample.com/environment-variables).
 
 | Variable Name                    | What is it for?                                                                                                  |
