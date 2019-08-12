@@ -1,4 +1,4 @@
-package githubActivity
+package user
 
 import (
 	"fmt"
@@ -7,8 +7,9 @@ import (
 	"github.com/amekss/assert"
 )
 
+// This test is completely useless..
 func TestActivity(t *testing.T) {
-	data := Activity("JustinDFuller")
+	data := GetActivity("JustinDFuller")
 
 	assert.True(t, len(data) >= 1)
 

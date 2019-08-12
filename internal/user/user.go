@@ -9,9 +9,13 @@ import (
 )
 
 import (
+	"github.com/JustinDFuller/github-activity/internal/commitActivity"
+	"github.com/JustinDFuller/github-activity/internal/repos"
 	"github.com/JustinDFuller/github-activity/internal/types"
 	"github.com/JustinDFuller/github-activity/internal/url"
 )
+
+type UserName string
 
 type GithubUserResponse struct {
 	ReposUrl string `json:"repos_url"`
@@ -64,4 +68,12 @@ func FetchReposUrl(user types.User) string {
 	var githubApi GithubUserResponse
 	githubApi.httpRequest("https://api.github.com/users/" + string(user))
 	return githubApi.ReposUrl
+}
+
+// TODO: This does not belong here.
+func GetActivity(userName string) repos.GithubReposResponse {
+	username := types.User(userName)
+	repoUrl := FetchReposUrl(username)
+	repos := repos.FetchRepos(repoUrl, username)
+	return commitActivity.FetchCommitActivity(repos, username)
 }

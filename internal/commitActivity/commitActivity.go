@@ -70,13 +70,13 @@ func prettyPrintJSON(parsedJSON repos.GithubReposResponse) {
 func FetchCommitActivity(repos repos.GithubReposResponse, userName types.User) repos.GithubReposResponse {
 	var wg sync.WaitGroup
 
-	replaceShaInUrl := strings.NewReplacer("{/sha}", "")
+	urlShaReplacer := strings.NewReplacer("{/sha}", "")
 
 	for index, value := range repos {
 		wg.Add(1)
 
 		var commits GithubCommitResponse
-		url := replaceShaInUrl.Replace(value.CommitsUrl)
+		url := urlShaReplacer.Replace(value.CommitsUrl)
 
 		go func(url string, index int) {
 			defer wg.Done()

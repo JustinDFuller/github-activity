@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/JustinDFuller/github-activity/internal/githubActivity"
-	"github.com/JustinDFuller/github-activity/internal/types"
+	"github.com/JustinDFuller/github-activity/internal/user"
 )
 
 func main() {
-	activity := githubActivity.Activity(types.User("JustinDFuller"))
+	activity := user.GetActivity("JustinDFuller")
 	fmt.Println(activity)
 }

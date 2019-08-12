@@ -84,6 +84,7 @@ func FetchRepos(url string, user types.User) GithubReposResponse {
 	repos.httpRequest(url)
 	repos.sortByDate()
 
+	// TODO: Configurable max. Need lower max for mobile view.
 	if len(repos) > 10 {
 		return repos[:10]
 	}
