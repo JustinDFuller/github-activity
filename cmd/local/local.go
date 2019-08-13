@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/JustinDFuller/github-activity/internal/user"
+	"github.com/JustinDFuller/github-activity/pkg/githubActivityJson"
 )
 
 func main() {
-	activity := user.GetActivity("JustinDFuller")
-	fmt.Println(activity)
+	fmt.Println(githubActivityJson.Fetch("JustinDFuller"))
 }

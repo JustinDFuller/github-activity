@@ -32,7 +32,6 @@ func toArray(commitsPerDate commitsPerDateMap) []types.FormattedCommitResponse {
 	}
 
 	return formattedCommits
-
 }
 
 func FormatCommitActivity(commits GithubCommitResponse) []types.FormattedCommitResponse {
