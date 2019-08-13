@@ -1,10 +1,11 @@
 package githubActivityJson
 
 import (
-	// "github.com/nsf/jsondiff"
+	"github.com/nsf/jsondiff"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -24,9 +25,9 @@ func TestExpectedOutput(t *testing.T) {
 
 	actual := Fetch("JustinDFuller")
 
-	if actual != string(expected) {
-		// options := jsondiff.DefaultConsoleOptions()
-		// _, diff := jsondiff.Compare(expected, []byte(actual), &options)
-		// t.Fatalf("%s", diff)
+	if actual != strings.TrimSpace(string(expected)) {
+		options := jsondiff.DefaultConsoleOptions()
+		_, diff := jsondiff.Compare(expected, []byte(actual), &options)
+		t.Fatalf("%s", diff)
 	}
 }

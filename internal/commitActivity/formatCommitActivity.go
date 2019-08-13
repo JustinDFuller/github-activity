@@ -1,7 +1,9 @@
 package commitActivity
 
 import (
+	"sort"
 	"strings"
+	"time"
 )
 
 import (
@@ -34,6 +36,20 @@ func toArray(commitsPerDate commitsPerDateMap) []types.FormattedCommitResponse {
 	return formattedCommits
 }
 
+func parseDate(date string) time.Time {
+	parsedDate, _ := time.Parse("2006-01-02", date)
+	return parsedDate
+}
+
+func sortByCommitDate(commits []types.FormattedCommitResponse) []types.FormattedCommitResponse {
+	sort.SliceStable(commits, func(i, j int) bool {
+		dateOne := parseDate(commits[i].Date)
+		dateTwo := parseDate(commits[j].Date)
+		return dateOne.After(dateTwo)
+	})
+	return commits
+}
+
 func FormatCommitActivity(commits GithubCommitResponse) []types.FormattedCommitResponse {
-	return toArray(getCommitsPerDate(commits))
+	return sortByCommitDate(toArray(getCommitsPerDate(commits)))
 }
